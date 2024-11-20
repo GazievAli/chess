@@ -1,6 +1,6 @@
 import logo from '../../assets/black-king.png'
 import {Colors} from "../Colors";
-import {Cell} from "../Cells";
+import {Cell} from "../Cell";
 
 export enum FigureNames {
     FIGURE = "Фигура",
@@ -16,13 +16,13 @@ export enum FigureNames {
 export class Figure {
     color: Colors;
     logo: typeof logo | null;
-    cells: Cell;
+    cell: Cell;
     name: FigureNames;
     id: number;
 
-    constructor(color: Colors, cells: Cell) {
+    constructor(color: Colors, cell: Cell) {
         this.color = color;
-        this.cells = cells;
+        this.cell = cell;
         this.cell.figure = this;
         this.logo = null;
         this.name = FigureNames.FIGURE;
@@ -34,6 +34,6 @@ export class Figure {
     }
 
     moveFigure(target: Cell) {
-        
+
     }
 }
