@@ -50,3 +50,10 @@ body {
 .selected {
   background: #00996c;
 }
+
+.available {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #00cd52;
+}
