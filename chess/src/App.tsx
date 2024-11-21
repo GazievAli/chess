@@ -18,12 +18,12 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <BoardComponent
-        board={board}
-        setBoard={setBoard}
-      />
-    </div>
+      <div className="App">
+          <BoardComponent
+              board={board}
+              setBoard={setBoard}
+          />
+      </div>
   );
 }
 
