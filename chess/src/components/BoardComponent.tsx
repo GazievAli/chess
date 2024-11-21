@@ -2,22 +2,29 @@ import React, {FC, useEffect, useState} from 'react';
 import {Board} from "../models/Board";
 import CellComponent from "./CellComponent";
 import {Cell} from "../models/Cell";
+import {Player} from "../models/Player";
+import {Colors} from "../models/Colors";
 
 interface BoardProps {
     board: Board;
     setBoard: (board: Board) => void;
+    currentPlayer:  Player | null;
+    swapPlayer: () => void;
 }
 
-const BoardComponent: FC<BoardProps> = ({board, setBoard}) => {
+const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPlayer}) => {
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
     function click(cell: Cell) {
         if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
             selectedCell.moveFigure(cell);
+            swapPlayer();
             setSelectedCell(null);
             updateBoard()
         } else {
-            setSelectedCell(cell);
+            if(cell.figure?.color === currentPlayer?.color) {
+                setSelectedCell(cell);
+            }
         }
     }
 
@@ -37,7 +44,7 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard}) => {
 
     return (
         <div>
-            <h3>Текущий игрок</h3>
+            <h3>Сейчас ходят {currentPlayer?.color === Colors.WHITE ? "белые" : "черные"}</h3>
             <div className="board">
                 {board.cells.map((row, index) =>
                     <React.Fragment key={index}>

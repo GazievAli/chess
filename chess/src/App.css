@@ -6,6 +6,7 @@
 body {
   background: #121212;
   font: 14px "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 .App {
@@ -40,20 +41,55 @@ body {
 }
 
 .black {
-  background: #99666c;
+  background: #637893;
 }
 
 .white {
-  background: #669993;
+  background: #a0a9ba;
 }
 
 .selected {
-  background: #00996c;
+  background: #8c5d8e;
 }
 
 .available {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: #00cd52;
+  background: #8c5d8e;
+}
+
+.lost {
+  height: calc(50vh - 60px);
+  min-width: 100px;
+  padding: 30px;
+  margin-left: 50px;
+  background: #8c5d8e;
+}
+
+.timer {
+  margin-right: 50px;
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8c5d8e;
+  padding: 30px;
+}
+
+.timer button {
+  padding: 5px;
+  background: #503350;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #352235;
+  transition: 0.3s;
+}
+
+.timer button:hover {
+  background: #352235;
+}
+
+.timer button:active {
+  background: #1c121c;
 }
