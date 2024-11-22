@@ -4,15 +4,16 @@ import BoardComponent from "./components/BoardComponent";
 import {Board} from "./models/Board";
 import {Player} from "./models/Player";
 import {Colors} from "./models/Colors";
-import LostFigures from "./components/LostFigures";
 import Timer from "./components/Timer";
+import RightAside from "./components/RightAside";
 
 function App() {
   const [board, setBoard] = useState(new Board());
-  const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
-  const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [showCoordinates, setShowCoordinates] = useState(false);
+
+  const whitePlayer = new Player(Colors.WHITE);
+  const blackPlayer = new Player(Colors.BLACK);
 
   useEffect(() => {
       restart()
@@ -23,7 +24,7 @@ function App() {
       const newBoard = new Board();
       newBoard.initCells()
       newBoard.addFigures()
-      setCurrentPlayer(new Player(Colors.WHITE))
+      setCurrentPlayer(whitePlayer)
       setBoard(newBoard);
   }
 
@@ -51,16 +52,7 @@ function App() {
               swapPlayer={swapPlayer}
               showCoordinates={showCoordinates}
           />
-          <div>
-              <LostFigures
-                  title="Черные фигуры"
-                  figures={board.lostBlackFigures}
-              />
-              <LostFigures
-                  title="Белые фигуры"
-                  figures={board.lostWhiteFigures}
-              />
-          </div>
+          <RightAside board={board} />
       </div>
   );
 }
