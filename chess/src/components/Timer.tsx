@@ -5,9 +5,11 @@ import {Colors} from "../models/Colors";
 interface TimerProps {
     currentPlayer: Player | null;
     restart: () => void;
+    handleCoordinates: () => void;
+    showCoordinates: boolean;
 }
 
-const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
+const Timer: FC<TimerProps> = ({currentPlayer, restart, handleCoordinates, showCoordinates}) => {
     const [blackTime, setBlackTime] = React.useState(300);
     const [whiteTime, setWhiteTime] = React.useState(300);
     const timer = useRef<null | ReturnType<typeof setInterval>>(null)
@@ -50,7 +52,8 @@ const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
     return (
         <div className="timer">
             <div>
-                <div>
+                <div className="buttons">
+                    <button onClick={handleCoordinates}>{showCoordinates ? "Скрыть кординаты" : "Показать кординаты"}</button>
                     <button onClick={handleRestart}>Перезапустить игру</button>
                 </div>
                 <h2>Черные - {blackTime}</h2>

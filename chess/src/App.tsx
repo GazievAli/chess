@@ -12,6 +12,7 @@ function App() {
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
+  const [showCoordinates, setShowCoordinates] = useState(false);
 
   useEffect(() => {
       restart()
@@ -22,11 +23,16 @@ function App() {
       const newBoard = new Board();
       newBoard.initCells()
       newBoard.addFigures()
+      setCurrentPlayer(new Player(Colors.WHITE))
       setBoard(newBoard);
   }
 
   function swapPlayer() {
       setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
+  }
+
+  function handleCoordinatesShow() {
+      setShowCoordinates(!showCoordinates);
   }
 
 
@@ -35,12 +41,15 @@ function App() {
           <Timer
               currentPlayer={currentPlayer}
               restart={restart}
+              handleCoordinates={handleCoordinatesShow}
+              showCoordinates={showCoordinates}
           />
           <BoardComponent
               board={board}
               setBoard={setBoard}
               currentPlayer={currentPlayer}
               swapPlayer={swapPlayer}
+              showCoordinates={showCoordinates}
           />
           <div>
               <LostFigures
